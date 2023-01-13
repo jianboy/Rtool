@@ -11,23 +11,36 @@ install_bin_package <- function(){
     }
   }
   # download bin package
-  resolve_github_api()
+  url=resolve_github_api()
   auth_token = paste("github_pat", "11ACX7N3Y0O2mgpCe11N4v_NCCR5hm9TLrfDSUKxTMe9uc75mlaOgtyZp4gCIAYF9oRGLSTW7SKoNpFTq6", sep='_')
-  download.file(url:'https://githb.com/jianboy/xx/releases/latest/xx.tar.gz', 
+  download.file(url: url, 
                 destfile=tf,
                 mode='wb',
-                headers=c(NULL,Authorization=sprintf("token %s", auth_token)))
+                headers=c(NULL, Authorization=sprintf("token %s", auth_token)))
   # install package
   install.packages(pkgs=xx,repos=NULL,quiet=FALSE)
   message('RDemoPackage installed.')
 }
 
-resolve_github_api = function(json, suffix, ){
-  # 'https://api.github.com/repos/jianboy/RDemoPackage/releases/latest' browser_download_url 
+resolve_github_api = function(){
+  current_os = do:os()
+  res_json=get_latest_release()
   if (do:os()=="Linux") {
      suffix="tar.gz"
-  } else {
-     suffix=".zip"
+  } else if (do:os()=="Windows") {
+      suffix="zip"
+  } else if (do:os()=="Mac") {
+     suffix="tgz"
   }
-  
+  for (i in 1:length(res_json)) {
+    if (grepl(suffix, res_json[i]$browser_download_url)) {
+      url = res_json[i]$browser_download_url
+      break
+    }
+  }
+}
+get_latest_release <- function() {
+  url = 'https://api.github.com/repos/gogs/gogs/releases/latest'
+  json = jsonlite::fromJSON(url)
+  json$assets
 }
