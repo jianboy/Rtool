@@ -1,11 +1,10 @@
 Package: rtool
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.6
+Title: rtool
+Version: 0.1.7
 Author: liuyuqi.gov@msn.cn
 Maintainer: liuyuqi <liuyuqi.gov@msn.cn>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Install demo package from source or binary.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
