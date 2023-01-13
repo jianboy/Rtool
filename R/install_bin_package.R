@@ -38,6 +38,7 @@ resolve_github_api = function(){
       break
     }
   }
+  url
 }
 get_latest_release <- function() {
   url = 'https://api.github.com/repos/gogs/gogs/releases/latest'
