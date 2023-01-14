@@ -41,7 +41,7 @@ resolve_github_api = function(){
   url
 }
 get_latest_release <- function() {
-  url = 'https://api.github.com/repos/gogs/gogs/releases/latest'
+  url = 'https://api.github.com/repos/jianboy/RDemoPackage/releases/latest'
   json = jsonlite::fromJSON(url)
   json$assets
 }
